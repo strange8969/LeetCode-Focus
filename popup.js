@@ -46,12 +46,6 @@ document.getElementById("save").addEventListener("click", () => {
   });
 });
 
-document.getElementById("mark1").addEventListener("click", () => {
-  chrome.runtime.sendMessage({ type: "manualMarkOne" }, () => {
-    refresh();
-  });
-});
-
 document.getElementById("startBreak").addEventListener("click", () => {
   const mins = Math.max(1, parseInt(minutesEl.value || "15", 10));
   chrome.runtime.sendMessage({ type: "startBreak", ms: mins * 60000 }, (r) => {
