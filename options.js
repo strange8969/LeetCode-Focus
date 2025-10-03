@@ -6,6 +6,8 @@ const minutesEl = document.getElementById("minutes");
 const breakLabel = document.getElementById("breakLabel");
 const modeDescription = document.getElementById("modeDescription");
 
+let currentBreakTimer = null; // Track the current timer
+
 function updateModeUI() {
   const mode = modeEl.value;
   if (mode === "daily") {
@@ -28,21 +30,33 @@ modeEl.addEventListener("change", updateModeUI);
 
 function fmtCountdown(until) {
   const ms = until - Date.now();
-  if (ms <= 0) return "No break active.";
+  if (ms <= 0) return "No break active";
   const m = Math.floor(ms / 60000);
   const s = Math.floor((ms % 60000) / 1000);
   return `Break ends in ${m}m ${s}s`;
 }
 
 function tickBreak(until) {
-  if (!until) {
-    breakLabel.textContent = "No break active.";
+  // Cancel any existing timer
+  if (currentBreakTimer) {
+    cancelAnimationFrame(currentBreakTimer);
+    currentBreakTimer = null;
+  }
+  
+  if (!until || until <= Date.now()) {
+    breakLabel.textContent = "No break active";
     return;
   }
+  
   function update() {
-    breakLabel.textContent = fmtCountdown(until);
-    if (Date.now() < until) requestAnimationFrame(update);
-    else breakLabel.textContent = "No break active.";
+    const now = Date.now();
+    if (now < until) {
+      breakLabel.textContent = fmtCountdown(until);
+      currentBreakTimer = requestAnimationFrame(update);
+    } else {
+      breakLabel.textContent = "No break active";
+      currentBreakTimer = null;
+    }
   }
   update();
 }
