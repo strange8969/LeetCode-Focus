@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Focus",
+  "version": "1.0.0",
+  "description": "Blocks distractions until you complete your daily LeetCode quota. Includes Emergency Break and modes.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://leetcode.com/*",
+    "https://leetcode.cn/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "LeetCode Focus",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+  "16": "icons/icon16.png",
+  "48": "icons/icon48.png"
+},
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://leetcode.cn/problems/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": []
+  }
+}

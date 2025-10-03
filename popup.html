@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>LeetCode Focus</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; margin: 12px; width: 280px; }
+      .row { margin: 8px 0; display: flex; align-items: center; justify-content: space-between; }
+      button { padding: 6px 10px; }
+      select, input { width: 120px; }
+      small { color: #666; }
+      .muted { color: #666; font-size: 12px; }
+      .stack { display: grid; gap: 6px; }
+    </style>
+  </head>
+  <body>
+    <h3>LeetCode Focus</h3>
+
+    <div class="row">
+      <div>Today</div>
+      <div id="today">0/1</div>
+    </div>
+
+    <div class="row">
+      <label for="mode">Mode</label>
+      <select id="mode">
+        <option value="any">Any Problem</option>
+        <option value="daily">Daily Problem</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="target">Daily target</label>
+      <input id="target" type="number" min="1" max="100" value="1" />
+    </div>
+
+    <div class="row">
+      <button id="save">Save</button>
+      <button id="mark1">Mark 1 solved</button>
+    </div>
+
+    <hr />
+
+    <div class="stack">
+      <b>Emergency Break</b>
+      <div class="row">
+        <label for="minutes">Minutes</label>
+        <input id="minutes" type="number" min="1" max="240" value="15" />
+      </div>
+      <div class="row">
+        <button id="startBreak">Start Break</button>
+        <button id="endBreak">End Break</button>
+      </div>
+      <div class="muted" id="breakLabel">No break active.</div>
+      <small>While a break is active, blocking is paused and the badge shows ⏸.</small>
+    </div>
+
+    <p class="muted">Tip: use Options page for a bigger view.</p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
