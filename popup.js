@@ -1,8 +1,28 @@
 const todayEl = document.getElementById("today");
 const modeEl = document.getElementById("mode");
 const targetEl = document.getElementById("target");
+const targetRow = document.getElementById("targetRow");
+const modeHint = document.getElementById("modeHint");
 const minutesEl = document.getElementById("minutes");
 const breakLabel = document.getElementById("breakLabel");
+
+function updateModeUI() {
+  const mode = modeEl.value;
+  if (mode === "daily") {
+    targetRow.style.display = "none";
+    modeHint.textContent = "📅 Must solve today's daily challenge (target: 1)";
+    modeHint.style.color = "#667eea";
+    modeHint.style.fontWeight = "600";
+  } else {
+    targetRow.style.display = "flex";
+    modeHint.textContent = "Solve any problem to unlock the web";
+    modeHint.style.color = "#718096";
+    modeHint.style.fontWeight = "400";
+  }
+}
+
+// Listen for mode changes
+modeEl.addEventListener("change", updateModeUI);
 
 function fmtCountdown(until) {
   const ms = until - Date.now();
@@ -29,17 +49,20 @@ function refresh() {
   chrome.runtime.sendMessage({ type: "getState" }, (res) => {
     if (!res) return;
     const { settings, breakUntil, today } = res;
-    todayEl.textContent = `${today.count}/${settings.dailyTarget}`;
+    const displayTarget = settings.mode === "daily" ? 1 : settings.dailyTarget;
+    todayEl.textContent = `${today.count}/${displayTarget}`;
     modeEl.value = settings.mode;
     targetEl.value = settings.dailyTarget;
+    updateModeUI();
     tickBreak(breakUntil);
   });
 }
 
 document.getElementById("save").addEventListener("click", () => {
+  const mode = modeEl.value;
   const settings = {
-    mode: modeEl.value,
-    dailyTarget: Math.max(1, parseInt(targetEl.value || "1", 10))
+    mode: mode,
+    dailyTarget: mode === "daily" ? 1 : Math.max(1, parseInt(targetEl.value || "1", 10))
   };
   chrome.runtime.sendMessage({ type: "setSettings", settings }, () => {
     refresh();

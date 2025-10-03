@@ -118,11 +118,22 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   (async () => {
     if (msg.type === "markSolved") {
       const slug = msg.slug;
+      const isDaily = msg.isDaily || false;
       if (!slug) return;
 
       const state = await getState();
       const key = todayKey();
       const day = state.progress[key] || { solvedSlugs: [], count: 0 };
+
+      // Check mode
+      const mode = state.settings.mode || "any";
+      
+      // If in daily mode, only count if it's the daily challenge
+      if (mode === "daily" && !isDaily) {
+        console.log("[LeetCode Focus] Daily mode active - only daily challenge counts");
+        sendResponse({ ok: false, reason: "daily-only", count: day.count });
+        return;
+      }
 
       if (!day.solvedSlugs.includes(slug)) {
         day.solvedSlugs.push(slug);

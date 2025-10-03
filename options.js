@@ -1,8 +1,30 @@
 const modeEl = document.getElementById("mode");
 const targetEl = document.getElementById("target");
+const targetRow = document.getElementById("targetRow");
 const todayEl = document.getElementById("today");
 const minutesEl = document.getElementById("minutes");
 const breakLabel = document.getElementById("breakLabel");
+const modeDescription = document.getElementById("modeDescription");
+
+function updateModeUI() {
+  const mode = modeEl.value;
+  if (mode === "daily") {
+    targetRow.style.display = "none";
+    modeDescription.innerHTML = `
+      <strong>📅 Daily Problem Mode:</strong> You must solve LeetCode's official daily challenge to unlock the web. 
+      Only the daily challenge counts - other problems won't count towards your goal. Target is fixed at 1 problem per day.
+    `;
+  } else {
+    targetRow.style.display = "grid";
+    modeDescription.innerHTML = `
+      Choose <strong>"Any Problem"</strong> to practice any LeetCode problem, or <strong>"Daily Problem"</strong> to focus on daily challenges. 
+      Set your target to build a consistent solving habit!
+    `;
+  }
+}
+
+// Listen for mode changes
+modeEl.addEventListener("change", updateModeUI);
 
 function fmtCountdown(until) {
   const ms = until - Date.now();
@@ -29,17 +51,20 @@ function refresh() {
   chrome.runtime.sendMessage({ type: "getState" }, (res) => {
     if (!res) return;
     const { settings, today, breakUntil } = res;
+    const displayTarget = settings.mode === "daily" ? 1 : settings.dailyTarget;
     modeEl.value = settings.mode;
     targetEl.value = settings.dailyTarget;
-    todayEl.textContent = `${today.count}/${settings.dailyTarget}`;
+    todayEl.textContent = `${today.count}/${displayTarget}`;
+    updateModeUI();
     tickBreak(breakUntil);
   });
 }
 
 document.getElementById("save").addEventListener("click", () => {
+  const mode = modeEl.value;
   const settings = {
-    mode: modeEl.value,
-    dailyTarget: Math.max(1, parseInt(targetEl.value || "1", 10))
+    mode: mode,
+    dailyTarget: mode === "daily" ? 1 : Math.max(1, parseInt(targetEl.value || "1", 10))
   };
   chrome.runtime.sendMessage({ type: "setSettings", settings }, () => refresh());
 });

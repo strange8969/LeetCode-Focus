@@ -16,6 +16,19 @@
     return m ? m[1] : null;
   }
 
+  function isDailyChallenge() {
+    // Check if this is the daily challenge page
+    // Daily challenge URLs typically have /problems/ and the page has a calendar icon or "Daily Challenge" indicator
+    const url = location.href;
+    const isDailyURL = /leetcode\.com.*daily/.test(url) || /problem-of-today/.test(url);
+    
+    // Also check for daily challenge indicators in the DOM
+    const dailyBadge = document.querySelector('[class*="daily"]');
+    const calendarIcon = document.querySelector('[class*="calendar"]');
+    
+    return isDailyURL || dailyBadge || calendarIcon;
+  }
+
   function armWindow() {
     submittedUntil = Date.now() + SUBMIT_WINDOW_MS;
     log("Submit window armed until", new Date(submittedUntil).toLocaleTimeString());
@@ -36,8 +49,15 @@
 
     lastMarkedSlug = slug;
     submittedUntil = 0; // close window to avoid double counts
-    log("Marking solved for", slug, "reason:", reason);
-    chrome.runtime.sendMessage({ type: "markSolved", slug }, () => {});
+    
+    const isDaily = isDailyChallenge();
+    log("Marking solved for", slug, "reason:", reason, "isDaily:", isDaily);
+    
+    chrome.runtime.sendMessage({ 
+      type: "markSolved", 
+      slug: slug,
+      isDaily: isDaily
+    }, () => {});
   }
 
   // ------------ hook UI submit ------------
