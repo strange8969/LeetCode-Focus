@@ -57,6 +57,76 @@
     }
 
     function scan() {
-      // Known selectors LeetCode uses (they change often, so we’re generous)
+      // Known selectors LeetCode uses (they change often, so we're generous)
       const sels = [
-       
+        "button[data-e2e-locator=\"console-submit-button\"]",
+        "button[class*=\"submit\"]",
+        "button[data-cy=\"submit\"]"
+      ];
+      for (const sel of sels) {
+        document.querySelectorAll(sel).forEach(attach);
+      }
+      // Also scan all buttons with "Submit" text
+      document.querySelectorAll("button").forEach((btn) => {
+        const text = (btn.textContent || "").trim().toLowerCase();
+        if (text === "submit" || text === "submit code") {
+          attach(btn);
+        }
+      });
+    }
+
+    scan();
+    const obs = new MutationObserver(scan);
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // ------------ detect "Accepted" status ------------
+  function detectAccepted() {
+    // Watch for success indicators in the DOM
+    const checkForAccepted = () => {
+      // Look for "Accepted" text in various places
+      const acceptedElements = Array.from(
+        document.querySelectorAll("[class*=\"success\"], [class*=\"accepted\"], [data-e2e-locator*=\"success\"]")
+      );
+      
+      for (const el of acceptedElements) {
+        const text = el.textContent || "";
+        if (/\bAccepted\b/i.test(text)) {
+          log("Found Accepted indicator");
+          lastToastAt = Date.now();
+          markSolved("DOM-Accepted");
+          break;
+        }
+      }
+    };
+
+    // Observe for toast/notification elements
+    const obs = new MutationObserver(() => {
+      checkForAccepted();
+    });
+    
+    obs.observe(document.body, { 
+      childList: true, 
+      subtree: true, 
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+    
+    // Initial check
+    checkForAccepted();
+  }
+
+  // ------------ initialization ------------
+  function init() {
+    log("LeetCode Focus content script loaded");
+    hookSubmitButton();
+    detectAccepted();
+  }
+
+  // Wait for page to be ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
