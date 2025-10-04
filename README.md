@@ -179,8 +179,6 @@ LeetCode-Focus/
 
 ### Popup Interface
 
-![LeetCode Focus Popup](screenshots/popup.png)
-
 **Features shown:**
 - Today's progress with gradient card
 - Mode selector with dynamic hints  
@@ -189,8 +187,6 @@ LeetCode-Focus/
 - Clean, modern design with smooth animations
 
 ### Options Page
-
-![LeetCode Focus Options Page](screenshots/options.png)
 
 **Features shown:**
 - Full-screen settings interface
