@@ -178,6 +178,7 @@ LeetCode-Focus/
 ## 🎨 Screenshots
 
 ### Popup Interface
+<img width="464" height="769" alt="image" src="https://github.com/user-attachments/assets/798f1ddd-814f-4953-8a46-5a734404b2b6" />
 
 **Features shown:**
 - Today's progress with gradient card
@@ -187,6 +188,7 @@ LeetCode-Focus/
 - Clean, modern design with smooth animations
 
 ### Options Page
+<img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/3487c4aa-fb48-473f-b2ce-405d3b6aabe4" />
 
 **Features shown:**
 - Full-screen settings interface
