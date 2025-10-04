@@ -1,0 +1,184 @@
+================================================================================
+  LEETCODE FOCUS - INSTALLATION INSTRUCTIONS
+================================================================================
+
+Version: 1.0.0
+Date: October 2025
+
+================================================================================
+  STEP-BY-STEP INSTALLATION
+================================================================================
+
+STEP 1: EXTRACT THE ZIP FILE
+-----------------------------
+- Extract "LeetCode-Focus.zip" to a permanent folder
+- Example locations:
+  Windows: C:\Program Files\LeetCode-Focus
+  Mac: ~/Applications/LeetCode-Focus
+  Linux: ~/apps/LeetCode-Focus
+
+⚠️ IMPORTANT: Do NOT delete this folder after installation!
+
+STEP 2: OPEN CHROME EXTENSIONS
+-------------------------------
+Option A: Type in address bar
+  chrome://extensions/
+
+Option B: Use menu
+  Click Menu (⋮) → Extensions → Manage Extensions
+
+STEP 3: ENABLE DEVELOPER MODE
+------------------------------
+- Look for "Developer mode" toggle (top-right corner)
+- Click to turn it ON
+- You'll see new buttons appear
+
+STEP 4: LOAD THE EXTENSION
+---------------------------
+1. Click "Load unpacked" button
+2. Browse to the LeetCode-Focus folder you extracted
+3. Select the folder (it should contain manifest.json)
+4. Click "Select Folder" or "Open"
+
+STEP 5: VERIFY INSTALLATION
+----------------------------
+You should see:
+✓ "LeetCode Focus" in your extensions list
+✓ Version 1.0.0
+✓ Status: Enabled
+✓ No error messages
+
+STEP 6: PIN THE EXTENSION (OPTIONAL)
+-------------------------------------
+1. Click the puzzle icon (🧩) in Chrome toolbar
+2. Find "LeetCode Focus"
+3. Click the pin icon next to it
+4. Extension icon now appears in toolbar
+
+STEP 7: CONFIGURE SETTINGS
+---------------------------
+1. Click the LeetCode Focus icon
+2. Choose mode:
+   - "Any Problem" = any LeetCode problem counts
+   - "Daily Problem" = only daily challenge counts
+3. Set daily target (Any Problem mode only)
+4. Click "Save Settings"
+
+================================================================================
+  USAGE
+================================================================================
+
+HOW IT WORKS:
+1. Extension blocks all websites except LeetCode
+2. Solve problems on LeetCode
+3. Extension automatically detects and counts them
+4. Once you hit your target, all websites unlock!
+
+TO SOLVE A PROBLEM:
+1. Go to any LeetCode problem
+2. Write your solution
+3. Click "Submit" (NOT "Run Code")
+4. Get "Accepted" status
+5. Extension auto-counts it!
+
+TO CHECK PROGRESS:
+- Click extension icon
+- Look at badge on icon (e.g., "0/1", "1/1")
+- Red badge = not done
+- Green badge = quota met!
+
+TO TAKE A BREAK:
+1. Click extension icon
+2. Set break duration (1-240 minutes)
+3. Click "Start Break"
+4. Websites temporarily unlock
+5. Click "End Break" to resume blocking
+
+================================================================================
+  TWO MODES EXPLAINED
+================================================================================
+
+ANY PROBLEM MODE:
+- Solve ANY LeetCode problem to unlock
+- Set custom targets (1-100 problems)
+- Perfect for practice and learning
+
+DAILY PROBLEM MODE:
+- ONLY the official daily challenge counts
+- Target is always 1 problem
+- Other problems won't count
+- Best for streak building
+
+================================================================================
+  TROUBLESHOOTING
+================================================================================
+
+PROBLEM: Extension failed to load
+SOLUTION: Make sure you selected the folder with manifest.json
+
+PROBLEM: Extension not blocking websites
+SOLUTION: 
+  1. Click extension icon
+  2. Verify settings
+  3. Click "Save Settings" again
+  4. Refresh the page
+
+PROBLEM: Problem not being detected
+SOLUTION:
+  1. Make sure you clicked "Submit" (not Run Code)
+  2. Wait for "Accepted" status
+  3. If Daily mode, check if it's the daily challenge
+
+PROBLEM: Can't find extension icon
+SOLUTION: Click puzzle icon (🧩) in toolbar and pin it
+
+================================================================================
+  DOCUMENTATION
+================================================================================
+
+For more information, see README.md for complete documentation including:
+- Detailed feature explanations
+- Advanced configuration options
+- FAQ section
+- Troubleshooting guide
+
+================================================================================
+  SYSTEM REQUIREMENTS
+================================================================================
+
+Browser: Google Chrome (or Chromium-based browsers)
+  - Chrome
+  - Microsoft Edge
+  - Brave
+  - Opera
+  - Vivaldi
+
+Operating System:
+  - Windows 7/8/10/11
+  - macOS 10.11+
+  - Linux (any)
+
+================================================================================
+  SUPPORT
+================================================================================
+
+Need help?
+1. Check README.md for detailed documentation
+2. Check INSTALLATION_GUIDE.md for step-by-step help
+3. Review the FAQ section in README.md
+4. Report issues on GitHub
+
+================================================================================
+  LICENSE & PRIVACY
+================================================================================
+
+License: MIT (free to use, modify, distribute)
+Privacy: All data stored locally, no tracking, no external servers
+
+================================================================================
+
+Made with 💜 for productive developers
+
+Stay focused. Solve problems. Build consistency. ⚡
+
+================================================================================
