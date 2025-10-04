@@ -213,7 +213,6 @@ The extension requires these permissions:
 - Make sure you clicked "Submit" (not "Run Code")
 - Wait for "Accepted" status to appear
 - Check if you're in Daily mode but solving a non-daily problem
-- Try enabling debug mode in `content.js` (set `DEBUG = true`)
 
 ### Progress not showing correctly?
 - Check the extension icon badge
@@ -224,35 +223,6 @@ The extension requires these permissions:
 - Click "Start Break" again
 - Try refreshing the extension
 - Check remaining time in the popup
-
-## 📝 Configuration
-
-### Changing Default Settings
-
-Edit `background.js`:
-
-```javascript
-const defaultSettings = {
-  dailyTarget: 1,      // Change default target
-  mode: "any"          // Change default mode ("any" or "daily")
-};
-```
-
-### Adjusting Detection Window
-
-Edit `content.js`:
-
-```javascript
-const SUBMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes (adjust as needed)
-```
-
-### Debug Mode
-
-Enable console logging in `content.js`:
-
-```javascript
-const DEBUG = true; // Set to true for debug logs
-```
 
 ## 🤝 Contributing
 
@@ -296,9 +266,6 @@ A: Currently only Chrome and Chromium-based browsers (Edge, Brave, etc.) are sup
 
 **Q: Will my progress sync across devices?**  
 A: Not yet. Progress is stored locally on each device.
-
-**Q: Can I change the redirect destination?**  
-A: Currently, it redirects to leetcode.com. You can modify `REDIRECT_TARGET` in `background.js` to change this.
 
 **Q: What if I solve a problem without clicking Submit?**  
 A: The extension only counts problems when you click Submit and get Accepted. Run Code doesn't count.
