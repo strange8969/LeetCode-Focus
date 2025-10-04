@@ -178,16 +178,28 @@ LeetCode-Focus/
 ## 🎨 Screenshots
 
 ### Popup Interface
+
+![LeetCode Focus Popup](screenshots/popup.png)
+
+**Features shown:**
 - Today's progress with gradient card
-- Mode selector with dynamic hints
+- Mode selector with dynamic hints  
 - Daily target input (Any Problem mode)
-- Emergency break controls
+- Emergency break controls with live countdown
+- Clean, modern design with smooth animations
 
 ### Options Page
+
+![LeetCode Focus Options Page](screenshots/options.png)
+
+**Features shown:**
 - Full-screen settings interface
-- Detailed mode explanations
+- Detailed mode explanations with info boxes
 - Large, comfortable controls
 - Beautiful gradient background
+- Progress tracking with motivational badges
+
+---
 
 ## ⚙️ Permissions Explained
 
