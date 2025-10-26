@@ -14,7 +14,8 @@ const defaultSettings = {
 // ---- utilities ----
 function todayKey() {
   const dtf = new Intl.DateTimeFormat("en-CA", {
-    year: "numeric", month: "2-digit", day: "2-digit"
+    year: "numeric", month: "2-digit", day: "2-digit",
+    timeZone: "UTC"
   });
   return dtf.format(new Date());
 }
